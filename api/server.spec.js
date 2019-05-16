@@ -35,5 +35,11 @@ describe('server', () => {
                 });
         });
 
+        it('should return { api: "up" }', async () => {
+            let res = await request(server)
+                .get('/');
+            const { body } = res;
+            expect(body.api).toBe('up');
+        })
     });
 });
