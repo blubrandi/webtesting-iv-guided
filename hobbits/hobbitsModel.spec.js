@@ -3,7 +3,7 @@ const Hobbits = require('./hobbitsModel.js')
 
 describe('Hobbits Model', () => {
 
-    beforeAll(async () => {
+    beforeEach(async () => {
         await db('hobbits').truncate()
     })
 
@@ -14,6 +14,18 @@ describe('Hobbits Model', () => {
             const hobbits = await db('hobbits')
 
             expect(hobbits).toHaveLength(1)
+        })
+
+        it('should insert provided hobbits', async () => {
+            let hobbit = await Hobbits.insert({ name: 'gaffer' })
+            expect(hobbit.name).toBe('gaffer')
+
+            hobbit = await Hobbits.insert({ name: 'sam' })
+            expect(hobbit.name).toBe('sam')
+
+            const hobbits = await db('hobbits')
+
+            expect(hobbits).toHaveLength(2)
         })
     })
 })
