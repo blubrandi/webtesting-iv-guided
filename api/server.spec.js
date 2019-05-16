@@ -13,7 +13,8 @@ describe('server', () => {
     //open client, make a request and inspect the response
     describe('GET /', () => {
         it('should return 200 OK', () => {
-            request(server).get('/').expect(500)
+            return request(server).get('/').expect(200)
+            //add return to turn on async testing
         })
     })
 })
